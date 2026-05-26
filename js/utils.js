@@ -3,7 +3,7 @@
 // ============================================
 
 const CONFIG = {
-    TMDB_API_KEY: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YjBlMWRjM2E3YmY4ZGRlY2Y4ZGNkNGEyY2E2NDM0NiIsInN1YiI6IjYwYjY2MjYwZjQ4ODNjMDA1ZjJlMDY2YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vgV-0_5PWbOHktP7aqNrlRyoVzDE7q4ZnrA6arp-tVI',
+    TMDB_API_KEY: 'becc030248ec01bad5e0a45c4239fac3',
     TMDB_BASE_URL: 'https://api.themoviedb.org/3',
     TMDB_IMAGE_BASE: 'https://image.tmdb.org/t/p',
     FIREBASE_CONFIG: {
