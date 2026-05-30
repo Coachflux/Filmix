@@ -86,3 +86,5 @@ window.shareCurrent = () => DetailPage.share();
 window.closePlayer = () => PlayerManager.close();
 window.closeSeasonModal = () => SeasonManager.hide();
 window.toggleFullscreen = () => PlayerManager.toggleFullscreen();
+window.switchVideoSource = () => PlayerManager.switchSource();
+
