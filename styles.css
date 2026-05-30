@@ -427,10 +427,13 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
 
 /* Responsive */
 /* Search Page Bar */
-.search-page-bar { margin-bottom: 28px; display: none; }
+.search-page-bar { margin-bottom: 24px; display: none; }
 .search-page-bar .search-box { width: 100%; max-width: 600px; }
 .search-clear-btn { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 14px; padding: 4px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: var(--transition-fast); }
 .search-clear-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+
+.player-controls-right { display: flex; gap: 10px; align-items: center; }
 
 @media (max-width: 1200px) {
     .detail-content { padding: 0 32px; }
@@ -457,20 +460,69 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .main-content { margin-left: 0; margin-top: 60px; margin-bottom: var(--bottom-nav-height); }
     .sidebar:hover ~ .main-content { margin-left: 0; }
     .top-navbar { display: none; }
-    .hero { height: 420px; margin-bottom: 32px; border-radius: 0; margin: 0 -16px 32px; }
-    .hero-content { padding: 32px 20px; }
-    .hero-title { font-size: 28px; }
-    .hero-desc { display: none; }
-    .hero-indicators { right: 20px; bottom: 20px; }
-    .content { padding: 16px; }
 
-    /* MOBILE GRID FIX - 2 columns, properly sized */
+    /* ===== HERO FIX - prevent overflow ===== */
+    .hero { 
+        height: 380px; 
+        margin-bottom: 24px; 
+        border-radius: var(--radius-lg); 
+        margin: 0 0 24px 0;
+        overflow: hidden;
+    }
+    .hero-slides { border-radius: var(--radius-lg); }
+    .hero-content { padding: 24px 16px; }
+    .hero-title { 
+        font-size: 24px; 
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .hero-meta { gap: 12px; font-size: 13px; margin-bottom: 16px; }
+    .hero-desc { 
+        display: none; 
+    }
+    .hero-actions { gap: 10px; }
+    .hero-actions .btn { padding: 10px 18px; font-size: 13px; }
+    .hero-indicators { right: 16px; bottom: 16px; }
+    .hero-badge { padding: 6px 14px; font-size: 11px; margin-bottom: 12px; }
+
+    /* ===== CAROUSEL FIX - touch scroll + proper sizing ===== */
+    .carousel-container { 
+        margin: 0 -4px; 
+        padding: 4px; 
+        overflow: visible;
+    }
+    .carousel { 
+        gap: 12px; 
+        padding: 4px 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .carousel .movie-card { 
+        width: 150px; 
+        flex: 0 0 150px;
+    }
+    .carousel .movie-poster { margin-bottom: 10px; }
+    .carousel .movie-info h3 { font-size: 12px; }
+    .carousel .movie-info .movie-meta { font-size: 10px; }
+    .carousel-nav { 
+        display: none; 
+    }
+
+    /* ===== CONTENT & GRID FIX ===== */
+    .content { padding: 16px; }
+    .section { margin-bottom: 36px; }
+    .section-header { margin-bottom: 16px; }
+    .section-title { font-size: 20px; }
+
+    /* Movie grid - 2 columns on mobile */
     .movie-grid { 
         grid-template-columns: repeat(2, 1fr) !important; 
         gap: 12px !important; 
     }
     .movie-grid .movie-card { 
         width: 100% !important; 
+        min-width: 0;
     }
     .movie-grid .movie-poster { 
         margin-bottom: 10px; 
@@ -483,100 +535,165 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
         font-size: 11px; 
     }
 
-    .detail-hero { height: 45vh; min-height: 350px; }
-    .detail-content { padding: 0 20px; margin-top: -120px; }
-    .detail-poster { width: 160px; }
-    .detail-title { font-size: 24px; }
+    /* ===== DETAIL PAGE FIX - prevent overflow ===== */
+    .detail-hero { 
+        height: 40vh; 
+        min-height: 280px; 
+        max-height: 400px;
+    }
+    .detail-content { 
+        padding: 0 16px; 
+        margin-top: -80px;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .detail-poster { 
+        width: 140px; 
+        border-radius: var(--radius-sm);
+    }
+    .detail-info { 
+        padding-top: 0; 
+        width: 100%;
+        text-align: center;
+    }
+    .detail-title { 
+        font-size: 22px; 
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+    }
+    .detail-meta { 
+        justify-content: center;
+        gap: 10px;
+    }
+    .detail-meta .badge { 
+        padding: 5px 12px; 
+        font-size: 12px; 
+    }
+    .detail-meta .rating-large { font-size: 16px; }
+    .detail-actions { 
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .detail-actions .btn { 
+        padding: 12px 20px; 
+        font-size: 13px; 
+    }
+    .detail-overview { 
+        font-size: 14px; 
+        line-height: 1.7;
+        text-align: left;
+        margin-bottom: 24px;
+    }
+    .genre-tags { 
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .genre-tag { 
+        padding: 5px 12px; 
+        font-size: 11px; 
+    }
+    .stats-row { 
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+    .stat-value { font-size: 20px; }
     .detail-sections { padding: 24px 16px; }
-    .section-title { font-size: 20px; }
-    .page-header { padding: 24px 16px 16px; }
-    .page-header h1 { font-size: 28px; }
-    .carousel-nav { display: none; }
-    .stats-row { gap: 24px; }
-    .modal { padding: 32px 20px; margin: 0 10px; }
-    .modal-wide { max-width: calc(100vw - 40px); }
-    .player-wrapper { width: 100%; }
-    .toast-container { left: 16px; right: 16px; bottom: 90px; }
-    .toast { min-width: auto; width: 100%; }
-    .bottom-nav { display: flex; }
+    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .seasons-section { margin-top: 24px; padding-top: 16px; }
+    .seasons-grid { justify-content: center; }
+    .season-btn { padding: 8px 14px; font-size: 12px; }
 
-    /* Show search bar on search page for mobile */
+    /* ===== PAGE HEADER FIX ===== */
+    .page-header { padding: 24px 16px 16px; }
+    .page-header h1 { font-size: 26px; }
+    .page-header p { font-size: 14px; margin-bottom: 16px; }
+
+    /* ===== FILTER CHIPS FIX ===== */
+    .filter-chips { gap: 8px; margin-bottom: 20px; }
+    .filter-chip { padding: 6px 14px; font-size: 12px; }
+    .content-tabs { gap: 8px; margin-bottom: 20px; }
+    .content-tab { padding: 8px 20px; font-size: 13px; }
+
+    /* ===== SEARCH PAGE FIX ===== */
     .search-page-bar { display: block !important; }
     .search-page-bar .search-box { width: 100%; }
     .search-page-bar input { padding: 14px 44px 14px 48px; font-size: 16px; }
 
-    /* Fix filter chips on mobile */
-    .filter-chips { gap: 8px; }
-    .filter-chip { padding: 6px 14px; font-size: 12px; }
+    /* ===== MODAL FIX ===== */
+    .modal { padding: 32px 20px; margin: 0 10px; }
+    .modal-wide { max-width: calc(100vw - 40px); }
 
-    /* Fix content tabs on mobile */
-    .content-tabs { gap: 8px; }
-    .content-tab { padding: 8px 20px; font-size: 13px; }
+    /* ===== PLAYER FIX ===== */
+    .player-wrapper { width: 100%; }
+    .player-container { border-radius: var(--radius-sm); }
 
-    /* Fix carousel cards on mobile */
-    .carousel .movie-card { width: 160px; }
+    /* ===== TOAST FIX ===== */
+    .toast-container { left: 16px; right: 16px; bottom: 90px; }
+    .toast { min-width: auto; width: 100%; }
 
-    /* Fix hero actions on mobile */
-    .hero-actions .btn { padding: 10px 18px; font-size: 13px; }
-
-    /* Fix cast grid on mobile */
-    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-    /* Fix season buttons on mobile */
-    .season-btn { padding: 8px 14px; font-size: 12px; }
-
-    /* Fix detail actions */
-    .detail-actions { gap: 10px; }
-    .detail-actions .btn { padding: 12px 20px; font-size: 13px; }
+    /* ===== BOTTOM NAV ===== */
+    .bottom-nav { display: flex; }
 }
 
 @media (max-width: 480px) {
-    .hero { height: 360px; margin: 0 -16px 24px; }
-    .hero-title { font-size: 22px; }
-    .hero-actions .btn { padding: 10px 18px; font-size: 13px; }
+    .hero { height: 320px; border-radius: var(--radius); margin: 0 0 20px 0; }
+    .hero-title { font-size: 20px; }
+    .hero-actions .btn { padding: 8px 14px; font-size: 12px; }
+    .hero-content { padding: 20px 12px; }
 
-    /* Mobile grid - 2 columns, smaller cards */
     .movie-grid { 
         grid-template-columns: repeat(2, 1fr) !important; 
         gap: 10px !important; 
     }
-    .movie-grid .movie-card { 
-        width: 100% !important; 
-    }
-    .movie-grid .movie-info h3 { 
-        font-size: 12px; 
-    }
-    .movie-grid .movie-info .movie-meta { 
-        font-size: 10px; 
-    }
+    .movie-grid .movie-info h3 { font-size: 12px; }
+    .movie-grid .movie-info .movie-meta { font-size: 10px; }
+
+    .carousel .movie-card { width: 130px; flex: 0 0 130px; }
 
     .section-title { font-size: 18px; }
-    .content-tab { padding: 8px 18px; font-size: 13px; }
-    .filter-chip { padding: 6px 12px; font-size: 12px; }
-    .detail-poster { width: 140px; }
-    .detail-title { font-size: 20px; }
-    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .modal { padding: 28px 16px; }
-    .player-container { border-radius: var(--radius-sm); }
+    .content-tab { padding: 8px 16px; font-size: 12px; }
+    .filter-chip { padding: 6px 12px; font-size: 11px; }
 
-    /* Fix carousel for very small screens */
-    .carousel .movie-card { width: 140px; }
+    .detail-hero { height: 35vh; min-height: 240px; }
+    .detail-poster { width: 120px; }
+    .detail-title { font-size: 18px; }
+    .detail-meta { gap: 8px; }
+    .detail-actions .btn { padding: 10px 16px; font-size: 12px; }
+    .stats-row { gap: 16px; }
+    .stat-value { font-size: 18px; }
+
+    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cast-card img { margin-bottom: 8px; }
+    .cast-card h4 { font-size: 11px; }
+    .cast-card p { font-size: 10px; }
+
+    .modal { padding: 24px 16px; }
+    .player-container { border-radius: 8px; }
+    .page-header h1 { font-size: 22px; }
 }
 
 @media (max-width: 360px) {
-    .hero-title { font-size: 18px; }
+    .hero-title { font-size: 16px; }
+    .hero { height: 280px; }
 
-    /* Even smaller cards but still 2 columns */
     .movie-grid { 
         grid-template-columns: repeat(2, 1fr) !important; 
         gap: 8px !important; 
     }
-    .movie-grid .movie-info h3 { 
-        font-size: 11px; 
-    }
+    .movie-grid .movie-info h3 { font-size: 11px; }
+    .movie-grid .movie-info .movie-meta { font-size: 9px; }
+
+    .carousel .movie-card { width: 120px; flex: 0 0 120px; }
 
     .section-title { font-size: 16px; }
     .bottom-nav-item span { font-size: 9px; }
     .bottom-nav-item i { font-size: 18px; }
-    .carousel .movie-card { width: 130px; }
+
+    .detail-poster { width: 100px; }
+    .detail-title { font-size: 16px; }
+    .detail-actions { flex-wrap: wrap; }
 }
