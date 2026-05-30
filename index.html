@@ -267,7 +267,7 @@
                         <p id="search-subtitle">Find your favorite movies and TV shows</p>
                     </div>
                     <div class="content">
-                        <!-- Search Bar for Mobile/Desktop -->
+                        <!-- Search Bar -->
                         <div class="search-page-bar" id="search-page-bar">
                             <div class="search-box mobile-search-box">
                                 <i class="fas fa-search"></i>
@@ -461,9 +461,14 @@
             <div class="player-title" id="player-title"></div>
             <div class="player-controls-bar">
                 <span id="player-info-text"></span>
-                <button class="btn btn-sm btn-ghost" onclick="PlayerManager.toggleFullscreen()">
-                    <i class="fas fa-expand"></i> Fullscreen
-                </button>
+                <div class="player-controls-right">
+                    <button class="btn btn-sm btn-ghost" onclick="PlayerManager.switchSource()" title="Switch video source">
+                        <i class="fas fa-sync-alt"></i> Switch Source
+                    </button>
+                    <button class="btn btn-sm btn-ghost" onclick="PlayerManager.toggleFullscreen()">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+                </div>
             </div>
         </div>
     </div>
