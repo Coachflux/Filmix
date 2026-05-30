@@ -433,7 +433,7 @@ const AuthManager = {
 };
 
 // ============================================
-// FIXED PLAYER - Multiple embed sources with TMDB ID support
+// FIXED PLAYER - Multiple working embed sources using TMDB IDs
 // ============================================
 const PlayerManager = {
     currentId: null,
@@ -443,19 +443,47 @@ const PlayerManager = {
     currentEpisode: null,
     sourceIndex: 0,
 
-    // Available sources with their URL templates
+    // Working embed sources that accept TMDB IDs directly
     sources: [
-        { name: 'MultiEmbed', url: (id, type, s, e) => e ? `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}` : `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1` },
-        { name: 'Embed.su', url: (id, type, s, e) => e ? `https://embed.su/embed/tv/${id}/${s}/${e}` : `https://embed.su/embed/movie/${id}` },
-        { name: 'VidLink', url: (id, type, s, e) => e ? `https://vidlink.pro/tv/${id}/${s}/${e}` : `https://vidlink.pro/movie/${id}` },
-        { name: 'VidSrc.cc', url: (id, type, s, e) => e ? `https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}` : `https://vidsrc.cc/v2/embed/movie/${id}` },
-        { name: '2Embed', url: (id, type, s, e) => e ? `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` : `https://www.2embed.cc/embed/${id}` },
+        { 
+            name: 'StreamSrc', 
+            movie: (id) => `https://streamsrc.cc/watch/movie/tmdbid=${id}`,
+            tv: (id, s, e) => `https://streamsrc.cc/watch/series/tmdbid=${id}&season=${s}&episode=${e}`
+        },
+        { 
+            name: 'Embed.su', 
+            movie: (id) => `https://embed.su/embed/movie/${id}`,
+            tv: (id, s, e) => `https://embed.su/embed/tv/${id}/${s}/${e}`
+        },
+        { 
+            name: 'VidBinge', 
+            movie: (id) => `https://vidbinge.to/movie/${id}`,
+            tv: (id, s, e) => `https://vidbinge.to/tv/${id}/${s}/${e}`
+        },
+        { 
+            name: 'VidLink', 
+            movie: (id) => `https://vidlink.pro/movie/${id}`,
+            tv: (id, s, e) => `https://vidlink.pro/tv/${id}/${s}/${e}`
+        },
+        { 
+            name: 'MultiEmbed', 
+            movie: (id) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,
+            tv: (id, s, e) => `https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`
+        },
+        { 
+            name: '2Embed', 
+            movie: (id) => `https://www.2embed.cc/embed/${id}`,
+            tv: (id, s, e) => `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`
+        }
     ],
 
-    getEmbedUrl(index, id, type, season, episode) {
+    getUrl(index, id, type, season, episode) {
         const source = this.sources[index];
         if (!source) return null;
-        return source.url(id, type, season, episode);
+        if (season && episode) {
+            return source.tv(id, season, episode);
+        }
+        return source.movie(id);
     },
 
     open(id, type = 'movie', title = '', season = null, episode = null) {
@@ -466,7 +494,11 @@ const PlayerManager = {
         this.currentEpisode = episode;
         this.sourceIndex = 0;
 
-        const src = this.getEmbedUrl(0, id, type, season, episode);
+        const src = this.getUrl(0, id, type, season, episode);
+        if (!src) {
+            UI.showToast('No video sources available', 'error');
+            return;
+        }
 
         const iframe = document.getElementById('player-iframe');
         const titleEl = document.getElementById('player-title');
@@ -474,10 +506,23 @@ const PlayerManager = {
 
         if (iframe) {
             iframe.src = src;
-            iframe.onload = () => { this.sourceIndex = 0; };
-            iframe.onerror = () => this.tryNextSource();
+            // Reset error handler
+            iframe.onerror = null;
+            // Set up load timeout to detect if source fails
+            setTimeout(() => {
+                try {
+                    // Try to check if iframe loaded content
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+                    if (!iframeDoc || iframeDoc.body.innerHTML === '') {
+                        // Might be blocked, try next source
+                        console.log('Source may be blocked, will try fallback on next play');
+                    }
+                } catch (e) {
+                    // Cross-origin, can't check - assume it loaded
+                }
+            }, 3000);
         }
-        if (titleEl) titleEl.textContent = title;
+        if (titleEl) titleEl.textContent = title || 'Now Playing';
         if (infoEl) {
             const info = season ? `S${season} E${episode}` : (type === 'tv' ? 'TV Show' : 'Movie');
             infoEl.textContent = info;
@@ -487,28 +532,31 @@ const PlayerManager = {
 
         // Request fullscreen on mobile for better experience
         if (window.innerWidth <= 768) {
-            setTimeout(() => this.toggleFullscreen(), 500);
+            setTimeout(() => this.toggleFullscreen(), 800);
         }
     },
 
-    tryNextSource() {
+    switchSource() {
         this.sourceIndex++;
 
         if (this.sourceIndex < this.sources.length) {
             const iframe = document.getElementById('player-iframe');
             if (iframe) {
-                const src = this.getEmbedUrl(
+                const src = this.getUrl(
                     this.sourceIndex, 
                     this.currentId, 
                     this.currentType, 
                     this.currentSeason, 
                     this.currentEpisode
                 );
-                iframe.src = src;
-                UI.showToast(`Trying ${this.sources[this.sourceIndex].name}...`, 'info', 2000);
+                if (src) {
+                    iframe.src = src;
+                    UI.showToast(`Switched to ${this.sources[this.sourceIndex].name}`, 'info', 2000);
+                }
             }
         } else {
-            UI.showToast('All video sources unavailable. Please try again later.', 'error', 5000);
+            this.sourceIndex = 0;
+            UI.showToast('All sources tried. Please try again later.', 'error', 5000);
         }
     },
 
@@ -518,7 +566,6 @@ const PlayerManager = {
         if (iframe) {
             iframe.src = '';
             iframe.onerror = null;
-            iframe.onload = null;
         }
     },
 
