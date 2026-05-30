@@ -10,6 +10,7 @@ const Components = {
         const year = UI.getYear(date);
         const rating = movie.vote_average ? movie.vote_average.toFixed(1) : '0.0';
         const id = movie.id;
+        // Use media_type from API if available (search results), otherwise use passed type
         const mediaType = movie.media_type || type;
 
         return `
