@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="CINEXTMA - Free Movies & TV Shows Streaming Platform">
-    <meta name="theme-color" content="#0D0C0F">
-    <title>Watch More- Free Movies & TV Shows</title>
+    <meta name="description" content="WatchMore - Stream Movies & TV Shows Free. The ultimate streaming experience.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>WatchMore - Movies & TV Shows</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -29,38 +31,66 @@
 <body data-theme="dark">
     <div class="app">
         <!-- ============================================
-             SIDEBAR NAVIGATION
+             MOBILE HEADER
+             ============================================ -->
+        <header class="mobile-header">
+            <div class="mobile-logo" onclick="navigateTo('home')">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">Watch<span>More</span></span>
+            </div>
+            <div class="mobile-actions">
+                <button class="mobile-icon-btn" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-moon" id="mobile-theme-icon"></i>
+                </button>
+                <button class="mobile-icon-btn" id="mobile-login-btn" onclick="showAuthModal()" title="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <div class="mobile-user-avatar" id="mobile-user-avatar" onclick="showAuthModal()" style="display:none">
+                    <span id="mobile-user-initial">U</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ============================================
+             SIDEBAR NAVIGATION (Desktop)
              ============================================ -->
         <aside class="sidebar">
-            <div class="sidebar-logo" onclick="navigateTo('home')">Watch<span>More</span></div>
+            <div class="sidebar-logo" onclick="navigateTo('home')">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">Watch<span>More</span></span>
+            </div>
 
             <nav class="nav-items">
                 <a class="nav-item active" data-page="home" onclick="navigateTo('home')">
-                    <i class="fas fa-home"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-home"></i></div>
                     <span class="nav-label">Home</span>
                 </a>
                 <a class="nav-item" data-page="discover" onclick="navigateTo('discover')">
-                    <i class="fas fa-compass"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-compass"></i></div>
                     <span class="nav-label">Discover</span>
                 </a>
                 <a class="nav-item" data-page="search" onclick="navigateTo('search')">
-                    <i class="fas fa-search"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-search"></i></div>
                     <span class="nav-label">Search</span>
                 </a>
                 <a class="nav-item" data-page="library" onclick="navigateTo('library')">
-                    <i class="fas fa-bookmark"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-bookmark"></i></div>
                     <span class="nav-label">Library</span>
+                </a>
+                <a class="nav-item" data-page="tv" onclick="navigateTo('tv')">
+                    <div class="nav-icon-wrap"><i class="fas fa-tv"></i></div>
+                    <span class="nav-label">TV Shows</span>
                 </a>
             </nav>
 
             <div class="sidebar-bottom">
                 <div class="sidebar-divider"></div>
                 <button class="nav-item" onclick="toggleTheme()">
-                    <i class="fas fa-moon" id="theme-icon"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-moon" id="theme-icon"></i></div>
                     <span class="nav-label">Theme</span>
                 </button>
                 <button class="nav-item" id="auth-nav-item" onclick="showAuthModal()">
-                    <i class="fas fa-user"></i>
+                    <div class="nav-icon-wrap"><i class="fas fa-user"></i></div>
                     <span class="nav-label">Account</span>
                 </button>
             </div>
@@ -70,12 +100,12 @@
              MAIN CONTENT
              ============================================ -->
         <main class="main-content">
-            <!-- Top Navbar -->
+            <!-- Top Navbar (Desktop) -->
             <header class="top-navbar">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="global-search" placeholder="Search your favorite movies..." autocomplete="off">
-                    <span class="search-shortcut">CTRL+K</span>
+                    <input type="text" id="global-search" placeholder="Search movies, TV shows..." autocomplete="off">
+                    <span class="search-shortcut">⌘K</span>
                 </div>
                 <div class="top-actions">
                     <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">
@@ -100,7 +130,7 @@
                     <div class="content">
                         <!-- Hero Section -->
                         <div class="hero" id="hero-section">
-                            <div class="hero-backdrop" id="hero-backdrop"></div>
+                            <div class="hero-slides" id="hero-slides"></div>
                             <div class="hero-overlay"></div>
                             <div class="hero-content">
                                 <div class="hero-badge" id="hero-badge">
@@ -118,12 +148,13 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="hero-indicators" id="hero-indicators"></div>
                         </div>
 
                         <!-- Today's Trending -->
                         <div class="section">
                             <div class="section-header">
-                                <h2 class="section-title">Today's Trending Movies</h2>
+                                <h2 class="section-title">Today's Trending</h2>
                                 <a class="see-all" onclick="navigateTo('discover')">See All <i class="fas fa-chevron-right"></i></a>
                             </div>
                             <div class="carousel-container">
@@ -136,7 +167,7 @@
                         <!-- This Week's Trending -->
                         <div class="section">
                             <div class="section-header">
-                                <h2 class="section-title">This Week's Trending Movies</h2>
+                                <h2 class="section-title">This Week's Trending</h2>
                                 <a class="see-all" onclick="navigateTo('discover')">See All <i class="fas fa-chevron-right"></i></a>
                             </div>
                             <div class="carousel-container">
@@ -146,7 +177,7 @@
                             </div>
                         </div>
 
-                        <!-- Popular -->
+                        <!-- Popular Movies -->
                         <div class="section">
                             <div class="section-header">
                                 <h2 class="section-title">Popular Movies</h2>
@@ -211,17 +242,41 @@
                     </div>
                 </div>
 
+                <!-- TV SHOWS PAGE -->
+                <div class="page" id="page-tv">
+                    <div class="page-header">
+                        <h1>TV Shows</h1>
+                        <p>Stream the best TV series and shows</p>
+                        <div class="filter-chips" id="tv-filters">
+                            <button class="filter-chip active" data-filter="popular" onclick="TVPage.setFilter('popular')">Popular</button>
+                            <button class="filter-chip" data-filter="topRated" onclick="TVPage.setFilter('topRated')">Top Rated</button>
+                            <button class="filter-chip" data-filter="onTheAir" onclick="TVPage.setFilter('onTheAir')">On The Air</button>
+                            <button class="filter-chip" data-filter="airingToday" onclick="TVPage.setFilter('airingToday')">Airing Today</button>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="movie-grid" id="tv-grid"></div>
+                        <div class="pagination" id="tv-pagination"></div>
+                    </div>
+                </div>
+
                 <!-- SEARCH PAGE -->
                 <div class="page" id="page-search">
                     <div class="page-header">
                         <h1>Search</h1>
-                        <div class="search-page-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="page-search-input" placeholder="Search movies, TV shows, actors..." autocomplete="off">
-                        </div>
                         <p id="search-subtitle">Find your favorite movies and TV shows</p>
                     </div>
                     <div class="content">
+                        <!-- Search Bar for Mobile/Desktop -->
+                        <div class="search-page-bar" id="search-page-bar">
+                            <div class="search-box mobile-search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="page-search-input" placeholder="Search movies, TV shows..." autocomplete="off">
+                                <button class="search-clear-btn" id="search-clear" onclick="SearchPage.clearSearch()" style="display:none">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="movie-grid" id="search-grid"></div>
                         <div class="no-results" id="search-empty" style="display:none">
                             <i class="fas fa-search"></i>
@@ -266,6 +321,7 @@
                                 <div class="rating-large"><i class="fas fa-star"></i><span id="detail-rating">0.0</span></div>
                                 <span class="badge" id="detail-year">2024</span>
                                 <span class="badge" id="detail-runtime">2h 30m</span>
+                                <span class="badge" id="detail-episodes" style="display:none"></span>
                             </div>
                             <div class="genre-tags" id="detail-genres"></div>
                             <div class="detail-actions">
@@ -298,6 +354,11 @@
                                     <div class="stat-label">Votes</div>
                                 </div>
                             </div>
+                            <!-- Seasons for TV -->
+                            <div class="seasons-section" id="seasons-section" style="display:none">
+                                <h3>Seasons</h3>
+                                <div class="seasons-grid" id="seasons-grid"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="detail-sections">
@@ -317,6 +378,32 @@
                 </div>
             </div>
         </main>
+
+        <!-- ============================================
+             BOTTOM NAV (Mobile)
+             ============================================ -->
+        <nav class="bottom-nav">
+            <a class="bottom-nav-item active" data-page="home" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a class="bottom-nav-item" data-page="discover" onclick="navigateTo('discover')">
+                <i class="fas fa-compass"></i>
+                <span>Discover</span>
+            </a>
+            <a class="bottom-nav-item" data-page="search" onclick="navigateTo('search')">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a class="bottom-nav-item" data-page="tv" onclick="navigateTo('tv')">
+                <i class="fas fa-tv"></i>
+                <span>TV</span>
+            </a>
+            <a class="bottom-nav-item" data-page="library" onclick="navigateTo('library')">
+                <i class="fas fa-bookmark"></i>
+                <span>Library</span>
+            </a>
+        </nav>
     </div>
 
     <!-- ============================================
@@ -326,6 +413,7 @@
         <div class="modal">
             <button class="modal-close" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
             <div class="modal-header">
+                <div class="modal-logo">🎬 WatchMore</div>
                 <h2 id="auth-title">Welcome Back</h2>
                 <p id="auth-subtitle">Sign in to access your library</p>
             </div>
@@ -368,9 +456,28 @@
         <div class="player-wrapper">
             <button class="player-close" onclick="closePlayer()"><i class="fas fa-times"></i></button>
             <div class="player-container">
-                <iframe id="player-iframe" src="" allowfullscreen allow="autoplay; fullscreen"></iframe>
+                <iframe id="player-iframe" src="" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media"></iframe>
             </div>
             <div class="player-title" id="player-title"></div>
+            <div class="player-controls-bar">
+                <span id="player-info-text"></span>
+                <button class="btn btn-sm btn-ghost" onclick="PlayerManager.toggleFullscreen()">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SEASON EPISODES MODAL
+         ============================================ -->
+    <div class="modal-overlay" id="season-modal">
+        <div class="modal modal-wide">
+            <button class="modal-close" onclick="closeSeasonModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h2 id="season-title">Season 1</h2>
+            </div>
+            <div class="episodes-list" id="episodes-list"></div>
         </div>
     </div>
 
@@ -382,14 +489,15 @@
     <!-- ============================================
          SCRIPTS
          ============================================ -->
-    <script src="js/utils.js"></script>
-    <script src="js/components.js"></script>
-    <script src="js/router.js"></script>
-    <script src="js/pages/home.js"></script>
-    <script src="js/pages/discover.js"></script>
-    <script src="js/pages/search.js"></script>
-    <script src="js/pages/library.js"></script>
-    <script src="js/pages/detail.js"></script>
-    <script src="js/app.js"></script>
+    <script src="utils.js"></script>
+    <script src="components.js"></script>
+    <script src="router.js"></script>
+    <script src="home.js"></script>
+    <script src="discover.js"></script>
+    <script src="tv.js"></script>
+    <script src="search.js"></script>
+    <script src="library.js"></script>
+    <script src="detail.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
