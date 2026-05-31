@@ -9,34 +9,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>WatchMore - Movies & TV Shows</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body data-theme="dark">
     <div class="app">
-        <!-- ============================================
-             MOBILE HEADER
-             ============================================ -->
+        <!-- Mobile Header -->
         <header class="mobile-header">
             <div class="mobile-logo" onclick="navigateTo('home')">
                 <span class="logo-icon">🎬</span>
-                <span class="logo-text">Watch<span>Morex</span></span>
+                <span class="logo-text">Watch<span>More</span></span>
             </div>
             <div class="mobile-actions">
                 <button class="mobile-icon-btn" onclick="toggleTheme()" title="Toggle theme">
@@ -51,13 +44,11 @@
             </div>
         </header>
 
-        <!-- ============================================
-             SIDEBAR NAVIGATION (Desktop)
-             ============================================ -->
+        <!-- Sidebar Navigation (Desktop) -->
         <aside class="sidebar">
             <div class="sidebar-logo" onclick="navigateTo('home')">
                 <span class="logo-icon">🎬</span>
-                <span class="logo-text">Watch<span>Morex</span></span>
+                <span class="logo-text">Watch<span>More</span></span>
             </div>
 
             <nav class="nav-items">
@@ -96,9 +87,7 @@
             </div>
         </aside>
 
-        <!-- ============================================
-             MAIN CONTENT
-             ============================================ -->
+        <!-- Main Content -->
         <main class="main-content">
             <!-- Top Navbar (Desktop) -->
             <header class="top-navbar">
@@ -120,9 +109,7 @@
                 </div>
             </header>
 
-            <!-- ============================================
-                 PAGES
-                 ============================================ -->
+            <!-- Pages Container -->
             <div id="pages-container">
 
                 <!-- HOME PAGE -->
@@ -378,9 +365,7 @@
             </div>
         </main>
 
-        <!-- ============================================
-             BOTTOM NAV (Mobile)
-             ============================================ -->
+        <!-- Bottom Nav (Mobile) -->
         <nav class="bottom-nav">
             <a class="bottom-nav-item active" data-page="home" onclick="navigateTo('home')">
                 <i class="fas fa-home"></i>
@@ -405,9 +390,7 @@
         </nav>
     </div>
 
-    <!-- ============================================
-         AUTH MODAL
-         ============================================ -->
+    <!-- Auth Modal -->
     <div class="modal-overlay" id="auth-modal">
         <div class="modal">
             <button class="modal-close" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
@@ -448,9 +431,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-         PLAYER MODAL
-         ============================================ -->
+    <!-- Player Modal -->
     <div class="player-modal" id="player-modal">
         <div class="player-wrapper">
             <button class="player-close" onclick="closePlayer()"><i class="fas fa-times"></i></button>
@@ -472,9 +453,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-         SEASON EPISODES MODAL
-         ============================================ -->
+    <!-- Season Episodes Modal -->
     <div class="modal-overlay" id="season-modal">
         <div class="modal modal-wide">
             <button class="modal-close" onclick="closeSeasonModal()"><i class="fas fa-times"></i></button>
@@ -485,14 +464,10 @@
         </div>
     </div>
 
-    <!-- ============================================
-         TOAST CONTAINER
-         ============================================ -->
+    <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- ============================================
-         SCRIPTS
-         ============================================ -->
+    <!-- Scripts -->
     <script src="utils.js"></script>
     <script src="components.js"></script>
     <script src="router.js"></script>
