@@ -569,7 +569,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .top-navbar { display: none; }
 
     /* === HERO - COMPACT === */
-    .hero { height: 380px; margin-bottom: 28px; border-radius: 0; margin: 0 -16px 28px; }
+    .hero { height: 380px; width: 130px; margin-bottom: 28px; border-radius: 0; margin: 0 -16px 28px; }
     .hero-content { padding: 28px 20px; }
     .hero-title { font-size: 28px; max-width: 100%; letter-spacing: -0.5px; }
     .hero-meta { gap: 12px; margin-bottom: 16px; }
@@ -639,7 +639,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     /* === DETAIL PAGE - FIXED LAYOUT === */
     .detail-hero { height: 40vh; min-height: 300px; }
     .detail-content { 
-        padding: 0 16px; 
+        padding: 0 12px; 
         margin-top: -80px; 
         gap: 16px; 
         flex-direction: row; 
@@ -806,7 +806,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 32px; height: 32px; font-size: 11px; }
     .main-content { margin-top: 52px; }
 
-    .hero { height: 320px; margin: 0 -12px 24px; }
+    .hero { height: 320px; width: 100px; margin: 0 -12px 24px; }
     .hero-content { padding: 24px 16px; }
     .hero-title { font-size: 22px; letter-spacing: -0.3px; }
     .hero-meta { gap: 8px; margin-bottom: 14px; }
@@ -977,7 +977,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 30px; height: 30px; font-size: 10px; }
     .main-content { margin-top: 48px; }
 
-    .hero { height: 280px; margin: 0 -10px 20px; }
+    .hero { height: 280px; width: 85px; margin: 0 -10px 20px; }
     .hero-content { padding: 20px 12px; }
     .hero-title { font-size: 18px; letter-spacing: -0.2px; line-height: 1.1; }
     .hero-meta { gap: 6px; margin-bottom: 12px; }
@@ -1152,7 +1152,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 28px; height: 28px; font-size: 9px; }
     .main-content { margin-top: 44px; }
 
-    .hero { height: 240px; margin: 0 -8px 16px; }
+    .hero { height: 240px; width: 75px; margin: 0 -8px 16px; }
     .hero-content { padding: 16px 10px; }
     .hero-title { font-size: 15px; }
     .hero-meta { gap: 5px; margin-bottom: 10px; }
@@ -1172,9 +1172,9 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .movie-rating { padding: 2px 4px; font-size: 8px; }
 
     .detail-poster { width: 75px; }
-    .detail-title { font-size: 14px; }
-    .detail-meta .badge { padding: 2px 6px; font-size: 9px; }
-    .detail-actions .btn { padding: 6px 10px; font-size: 10px; }
+    .detail-title { font-size: 10px; }
+    .detail-meta .badge { padding: 2px 6px; font-size: 7px; }
+    .detail-actions .btn { padding: 6px 8px; font-size: 10px; }
     .detail-overview { font-size: 10px; }
     .genre-tag { padding: 3px 6px; font-size: 8px; }
     .stat-value { font-size: 13px; }
