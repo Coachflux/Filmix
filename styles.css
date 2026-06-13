@@ -425,15 +425,34 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .main-content { margin-top: calc(60px + env(safe-area-inset-top)); }
 }
 
-/* Responsive */
+/* ============================================
+   RESPONSIVE BREAKPOINTS - MOBILE FIRST
+   ============================================ */
+
+/* 1200px - Large tablets & small laptops */
 @media (max-width: 1200px) {
     .detail-content { padding: 0 32px; }
     .detail-poster { width: 260px; }
     .detail-title { font-size: 38px; }
+
+    .hero { height: 480px; }
+    .hero-title { font-size: 46px; }
+    .hero-content { padding: 40px; }
+
+    .content { padding: 20px 28px 36px; }
+    .page-header { padding: 36px 28px 20px; }
+
+    .movie-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 24px; }
 }
 
+/* 1024px - Tablets landscape */
 @media (max-width: 1024px) {
     .hero-title { font-size: 40px; }
+    .hero { height: 440px; }
+
     .detail-content { flex-direction: column; align-items: center; text-align: center; gap: 32px; }
     .detail-poster { width: 220px; }
     .detail-info { padding-top: 0; width: 100%; }
@@ -443,62 +462,498 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .stats-row { justify-content: center; }
     .cast-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
     .seasons-grid { justify-content: center; }
+    .detail-title { font-size: 36px; }
+
+    .movie-card { width: 180px; }
+    .carousel { gap: 16px; }
+
+    .content { padding: 18px 24px 32px; }
+    .page-header { padding: 32px 24px 20px; }
+    .page-header h1 { font-size: 34px; }
+
+    .section { margin-bottom: 44px; }
+
+    .top-navbar { padding: 0 24px; }
+    .search-box { width: 360px; }
 }
 
+/* 768px - Tablets portrait & large phones */
 @media (max-width: 768px) {
     .sidebar { display: none; }
     .mobile-header { display: flex; }
     .main-content { margin-left: 0; margin-top: 60px; margin-bottom: var(--bottom-nav-height); }
     .sidebar:hover ~ .main-content { margin-left: 0; }
     .top-navbar { display: none; }
-    .hero { height: 420px; margin-bottom: 32px; border-radius: 0; margin: 0 -16px 32px; }
-    .hero-content { padding: 32px 20px; }
-    .hero-title { font-size: 28px; }
+
+    .hero { height: 380px; margin-bottom: 28px; border-radius: 0; margin: 0 -16px 28px; }
+    .hero-content { padding: 28px 20px; }
+    .hero-title { font-size: 28px; max-width: 100%; letter-spacing: -0.5px; }
+    .hero-meta { gap: 12px; margin-bottom: 16px; }
+    .hero-meta .rating { font-size: 14px; }
+    .hero-meta .genre { padding: 4px 12px; font-size: 11px; }
     .hero-desc { display: none; }
+    .hero-actions { gap: 10px; }
+    .hero-actions .btn { padding: 12px 22px; font-size: 13px; }
     .hero-indicators { right: 20px; bottom: 20px; }
-    .content { padding: 16px; }
-    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .hero-badge { padding: 6px 14px; font-size: 11px; margin-bottom: 14px; }
+
+    .content { padding: 12px 16px 20px; }
+
+    .movie-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
     .movie-card { width: 100%; }
-    .detail-hero { height: 45vh; min-height: 200px; }
-    .detail-content { padding: 0 20px; margin-top: -120px; }
-    .detail-poster { width: 100px; }
-    .detail-title { font-size: 20px; }
-    .detail-sections { padding: 20px 12px; }
-    .section-title { font-size: 16px; }
-    .page-header { padding: 20px 12px 12px; }
-    .page-header h1 { font-size: 24px; }
-    .carousel-nav { display: none; }
-    .stats-row { gap: 20px; }
-    .modal { padding: 32px 20px; margin: 0 10px; }
-    .modal-wide { max-width: calc(100vw - 40px); }
-    .player-wrapper { width: 100%; }
-    .toast-container { left: 16px; right: 16px; bottom: 90px; }
-    .toast { min-width: auto; width: 100%; }
-    .bottom-nav { display: flex; }
-    .search-box { width: 100%; padding: 0 16px; margin-bottom: 16px; }
-    .search-box input { padding: 12px 16px 12px 44px; }
-    .search-shortcut { display: none; }
-}
+    .movie-card:hover { transform: translateY(-6px); }
+    .movie-poster { margin-bottom: 10px; border-radius: 10px; }
+    .movie-info h3 { font-size: 12px; margin-bottom: 4px; }
+    .movie-info .movie-meta { font-size: 11px; }
+    .movie-rating { padding: 4px 8px; font-size: 11px; top: 8px; right: 8px; }
+    .play-btn { width: 44px; height: 44px; font-size: 16px; }
 
-@media (max-width: 480px) {
-    .hero { height: 360px; margin: 0 -16px 24px; }
-    .hero-title { font-size: 22px; }
-    .hero-actions .btn { padding: 10px 18px; font-size: 13px; }
-    .movie-grid { grid-template-columns: repeat(3, 2fr); gap: 10px; }
-    .section-title { font-size: 18px; }
+    .detail-hero { height: 40vh; min-height: 300px; }
+    .detail-content { padding: 0 16px; margin-top: -100px; gap: 20px; }
+    .detail-poster { width: 140px; border-radius: var(--radius); }
+    .detail-title { font-size: 22px; margin-bottom: 12px; }
+    .detail-meta { gap: 10px; margin-bottom: 18px; }
+    .detail-meta .badge { padding: 5px 12px; font-size: 12px; }
+    .detail-meta .rating-large { font-size: 16px; }
+    .detail-actions { gap: 10px; margin-bottom: 20px; }
+    .detail-actions .btn { padding: 12px 24px; font-size: 13px; }
+    .detail-overview { font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
+    .genre-tags { gap: 8px; margin-bottom: 20px; }
+    .genre-tag { padding: 6px 12px; font-size: 11px; }
+    .stats-row { gap: 24px; margin-bottom: 24px; }
+    .stat-value { font-size: 22px; }
+    .stat-label { font-size: 10px; }
+    .detail-sections { padding: 24px 16px; }
+    .cast-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .cast-card img { margin-bottom: 8px; }
+    .cast-card h4 { font-size: 11px; }
+    .cast-card p { font-size: 10px; }
+    .seasons-section { margin-top: 24px; padding-top: 16px; }
+    .seasons-section h3 { font-size: 16px; }
+    .season-btn { padding: 8px 14px; font-size: 12px; }
+
+    .section { margin-bottom: 36px; }
+    .section-header { margin-bottom: 16px; }
+    .section-title { font-size: 20px; }
+    .section-subtitle { font-size: 13px; }
+    .see-all { padding: 6px 10px; font-size: 12px; }
+
+    .page-header { padding: 20px 16px 16px; }
+    .page-header h1 { font-size: 26px; margin-bottom: 6px; }
+    .page-header p { font-size: 13px; margin-bottom: 16px; }
+
+    .content-tabs { gap: 8px; margin-bottom: 20px; }
     .content-tab { padding: 8px 18px; font-size: 13px; }
+
+    .filter-chips { gap: 8px; margin-bottom: 20px; }
     .filter-chip { padding: 6px 12px; font-size: 12px; }
-    .detail-poster { width: 70px; }
-    .detail-title { font-size: 20px; }
-    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-    .modal { padding: 15px 8px; }
+
+    .carousel { gap: 12px; padding: 6px 4px; }
+    .carousel-nav { display: none; }
+
+    .modal { padding: 28px 20px; margin: 0 10px; }
+    .modal-wide { max-width: calc(100vw - 40px); }
+    .modal-header h2 { font-size: 22px; }
+    .form-group input { padding: 12px 14px; }
+    .modal .btn { padding: 14px; font-size: 14px; }
+
+    .player-wrapper { width: 100%; }
     .player-container { border-radius: var(--radius-sm); }
+    .player-title { font-size: 14px; bottom: -32px; }
+    .player-close { top: -48px; width: 40px; height: 40px; font-size: 18px; }
+
+    .toast-container { left: 16px; right: 16px; bottom: 90px; }
+    .toast { min-width: auto; width: 100%; padding: 12px 16px; }
+    .toast-title { font-size: 13px; }
+    .toast-message { font-size: 12px; }
+
+    .bottom-nav { display: flex; }
+
+    .search-box { width: 100%; padding: 0 16px; margin-bottom: 16px; }
+    .search-box input { padding: 12px 16px 12px 44px; font-size: 14px; }
+    .search-shortcut { display: none; }
+
+    .library-empty { padding: 60px 16px; }
+    .library-empty i { font-size: 56px; }
+    .library-empty h3 { font-size: 18px; }
+
+    .no-results { padding: 60px 16px; }
+    .no-results i { font-size: 48px; }
+    .no-results h3 { font-size: 18px; }
+
+    .pagination { gap: 6px; margin-top: 36px; }
+    .page-btn { min-width: 40px; height: 40px; font-size: 13px; padding: 0 10px; }
+
+    .loading-center { min-height: 300px; }
+    .spinner { width: 40px; height: 40px; }
 }
 
-@media (max-width: 360px) {
-    .hero-title { font-size: 18px; }
-    .movie-grid { grid-template-columns: 2fr; gap: 10px; }
-    .section-title { font-size: 10px; }
-    .bottom-nav-item span { font-size: 9px; }
+/* 480px - Small phones */
+@media (max-width: 480px) {
+    .mobile-header { height: 52px; padding: 0 12px; }
+    .mobile-logo { font-size: 16px; }
+    .mobile-logo .logo-icon { font-size: 20px; }
+    .mobile-icon-btn { width: 34px; height: 34px; font-size: 13px; }
+    .mobile-user-avatar { width: 32px; height: 32px; font-size: 11px; }
+    .main-content { margin-top: 52px; }
+
+    .hero { height: 320px; margin: 0 -12px 24px; }
+    .hero-content { padding: 24px 16px; }
+    .hero-title { font-size: 22px; letter-spacing: -0.3px; }
+    .hero-meta { gap: 8px; margin-bottom: 14px; }
+    .hero-meta .rating { font-size: 13px; }
+    .hero-meta .year { font-size: 13px; }
+    .hero-meta .genre { padding: 3px 10px; font-size: 10px; }
+    .hero-actions .btn { padding: 10px 16px; font-size: 12px; gap: 6px; }
+    .hero-actions .btn i { font-size: 14px; }
+    .hero-badge { padding: 5px 12px; font-size: 10px; margin-bottom: 12px; }
+    .hero-indicators { right: 16px; bottom: 16px; gap: 6px; }
+    .hero-indicator { width: 24px; height: 3px; }
+    .hero-indicator.active { width: 36px; }
+
+    .content { padding: 10px 12px 16px; }
+
+    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .movie-card:hover { transform: translateY(-4px); }
+    .movie-poster { margin-bottom: 8px; border-radius: 8px; }
+    .movie-info h3 { font-size: 11px; margin-bottom: 3px; }
+    .movie-info .movie-meta { font-size: 10px; gap: 6px; }
+    .movie-rating { padding: 3px 6px; font-size: 10px; top: 6px; right: 6px; }
+    .movie-rating i { font-size: 8px; }
+    .poster-overlay { padding: 12px; }
+    .play-btn { width: 40px; height: 40px; font-size: 14px; }
+
+    .detail-hero { height: 35vh; min-height: 260px; }
+    .detail-content { padding: 0 12px; margin-top: -80px; gap: 16px; }
+    .detail-poster { width: 120px; border-radius: 10px; }
+    .detail-title { font-size: 18px; margin-bottom: 10px; }
+    .detail-meta { gap: 8px; margin-bottom: 14px; }
+    .detail-meta .badge { padding: 4px 10px; font-size: 11px; }
+    .detail-meta .rating-large { font-size: 14px; gap: 4px; }
+    .detail-meta .rating-large i { font-size: 13px; }
+    .detail-actions { gap: 8px; margin-bottom: 16px; }
+    .detail-actions .btn { padding: 10px 18px; font-size: 12px; gap: 6px; }
+    .detail-actions .btn i { font-size: 14px; }
+    .detail-overview { font-size: 12px; line-height: 1.6; margin-bottom: 20px; }
+    .genre-tags { gap: 6px; margin-bottom: 16px; }
+    .genre-tag { padding: 5px 10px; font-size: 10px; }
+    .stats-row { gap: 16px; margin-bottom: 20px; }
+    .stat-value { font-size: 18px; }
+    .stat-label { font-size: 9px; letter-spacing: 1px; }
+    .detail-sections { padding: 20px 12px; }
+    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .cast-card img { margin-bottom: 6px; }
+    .cast-card h4 { font-size: 10px; }
+    .cast-card p { font-size: 9px; }
+    .seasons-section { margin-top: 20px; padding-top: 14px; }
+    .seasons-section h3 { font-size: 14px; margin-bottom: 12px; }
+    .season-btn { padding: 6px 12px; font-size: 11px; }
+
+    .section { margin-bottom: 28px; }
+    .section-header { margin-bottom: 12px; }
+    .section-title { font-size: 18px; }
+    .section-subtitle { font-size: 12px; }
+    .see-all { padding: 5px 8px; font-size: 11px; gap: 4px; }
+
+    .page-header { padding: 16px 12px 12px; }
+    .page-header h1 { font-size: 22px; margin-bottom: 4px; }
+    .page-header p { font-size: 12px; margin-bottom: 12px; }
+
+    .content-tabs { gap: 6px; margin-bottom: 16px; }
+    .content-tab { padding: 6px 14px; font-size: 12px; }
+
+    .filter-chips { gap: 6px; margin-bottom: 16px; }
+    .filter-chip { padding: 5px 10px; font-size: 11px; }
+
+    .carousel { gap: 10px; }
+    .movie-card { width: 140px; }
+
+    .modal { padding: 24px 16px; margin: 0 8px; border-radius: var(--radius); }
+    .modal-wide { max-width: calc(100vw - 32px); }
+    .modal-header { margin-bottom: 24px; }
+    .modal-logo { font-size: 24px; }
+    .modal-header h2 { font-size: 20px; }
+    .modal-header p { font-size: 13px; }
+    .modal-close { top: 12px; right: 12px; width: 34px; height: 34px; font-size: 14px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { font-size: 12px; margin-bottom: 6px; }
+    .form-group input { padding: 12px 14px; font-size: 13px; }
+    .modal .btn { padding: 12px; font-size: 13px; }
+    .modal-footer { font-size: 13px; margin-top: 18px; }
+    .divider-text { margin: 18px 0; font-size: 12px; gap: 10px; }
+    .social-login { gap: 8px; }
+    .social-btn { padding: 10px; font-size: 13px; gap: 6px; }
+    .social-btn i { font-size: 16px; }
+
+    .player-container { border-radius: 8px; }
+    .player-close { top: -44px; width: 36px; height: 36px; font-size: 16px; }
+    .player-title { font-size: 13px; bottom: -28px; }
+    .player-controls-bar { margin-top: 12px; font-size: 12px; }
+
+    .toast-container { left: 12px; right: 12px; bottom: 80px; gap: 8px; }
+    .toast { padding: 12px 14px; }
+    .toast i { font-size: 18px; }
+    .toast-title { font-size: 13px; }
+    .toast-message { font-size: 12px; }
+
+    .bottom-nav { height: 56px; padding: 4px 0 8px; }
+    .bottom-nav-item { padding: 4px 8px; gap: 2px; }
     .bottom-nav-item i { font-size: 18px; }
+    .bottom-nav-item span { font-size: 9px; }
+    .bottom-nav-item.active::after { width: 16px; height: 2px; bottom: -4px; }
+
+    .search-box { padding: 0 12px; margin-bottom: 12px; }
+    .search-box input { padding: 10px 14px 10px 40px; font-size: 13px; }
+    .search-box i { left: 14px; font-size: 14px; }
+
+    .library-empty { padding: 48px 12px; }
+    .library-empty i { font-size: 48px; margin-bottom: 16px; }
+    .library-empty h3 { font-size: 16px; }
+    .library-empty p { font-size: 13px; }
+
+    .no-results { padding: 48px 12px; }
+    .no-results i { font-size: 40px; margin-bottom: 14px; }
+    .no-results h3 { font-size: 16px; }
+    .no-results p { font-size: 13px; }
+
+    .pagination { gap: 4px; margin-top: 28px; }
+    .page-btn { min-width: 36px; height: 36px; font-size: 12px; padding: 0 8px; }
+
+    .loading-center { min-height: 240px; gap: 14px; }
+    .spinner { width: 36px; height: 36px; border-width: 3px; }
+    .loading-center p { font-size: 13px; }
+
+    .episode-item { padding: 10px 12px; gap: 12px; }
+    .episode-item .episode-number { width: 30px; height: 30px; font-size: 11px; }
+    .episode-item .episode-info h4 { font-size: 12px; }
+    .episode-item .episode-info p { font-size: 11px; }
+    .episode-item .episode-play { width: 34px; height: 34px; font-size: 12px; }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .mobile-header { height: calc(52px + env(safe-area-inset-top)); }
+        .bottom-nav { height: calc(56px + env(safe-area-inset-bottom)); padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+        .main-content { margin-top: calc(52px + env(safe-area-inset-top)); }
+    }
+}
+
+/* 360px - Extra small phones */
+@media (max-width: 360px) {
+    .mobile-header { height: 48px; padding: 0 10px; }
+    .mobile-logo { font-size: 15px; gap: 8px; }
+    .mobile-logo .logo-icon { font-size: 18px; }
+    .mobile-icon-btn { width: 32px; height: 32px; font-size: 12px; }
+    .mobile-user-avatar { width: 30px; height: 30px; font-size: 10px; }
+    .main-content { margin-top: 48px; }
+
+    .hero { height: 280px; margin: 0 -10px 20px; }
+    .hero-content { padding: 20px 12px; }
+    .hero-title { font-size: 18px; letter-spacing: -0.2px; line-height: 1.1; }
+    .hero-meta { gap: 6px; margin-bottom: 12px; }
+    .hero-meta .rating { font-size: 12px; }
+    .hero-meta .rating i { font-size: 10px; }
+    .hero-meta .year { font-size: 12px; }
+    .hero-meta .genre { padding: 2px 8px; font-size: 9px; }
+    .hero-actions { gap: 8px; }
+    .hero-actions .btn { padding: 8px 14px; font-size: 11px; gap: 4px; }
+    .hero-actions .btn i { font-size: 12px; }
+    .hero-badge { padding: 4px 10px; font-size: 9px; margin-bottom: 10px; letter-spacing: 0.5px; }
+    .hero-badge i { font-size: 11px; }
+    .hero-indicators { right: 12px; bottom: 12px; gap: 4px; }
+    .hero-indicator { width: 20px; height: 3px; }
+    .hero-indicator.active { width: 28px; }
+
+    .content { padding: 8px 10px 14px; }
+
+    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .movie-card:hover { transform: translateY(-3px); }
+    .movie-poster { margin-bottom: 6px; border-radius: 6px; }
+    .movie-info h3 { font-size: 10px; margin-bottom: 2px; }
+    .movie-info .movie-meta { font-size: 9px; gap: 4px; }
+    .movie-rating { padding: 2px 5px; font-size: 9px; top: 4px; right: 4px; border-radius: 6px; }
+    .movie-rating i { font-size: 7px; }
+    .poster-overlay { padding: 8px; }
+    .play-btn { width: 36px; height: 36px; font-size: 12px; border-width: 2px; }
+
+    .detail-hero { height: 30vh; min-height: 220px; }
+    .detail-content { padding: 0 10px; margin-top: -60px; gap: 12px; }
+    .detail-poster { width: 100px; border-radius: 8px; }
+    .detail-title { font-size: 16px; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .detail-meta { gap: 6px; margin-bottom: 10px; }
+    .detail-meta .badge { padding: 3px 8px; font-size: 10px; }
+    .detail-meta .rating-large { font-size: 13px; gap: 3px; }
+    .detail-meta .rating-large i { font-size: 12px; }
+    .detail-actions { gap: 6px; margin-bottom: 12px; }
+    .detail-actions .btn { padding: 8px 14px; font-size: 11px; gap: 4px; }
+    .detail-actions .btn i { font-size: 12px; }
+    .detail-overview { font-size: 11px; line-height: 1.6; margin-bottom: 16px; }
+    .genre-tags { gap: 5px; margin-bottom: 12px; }
+    .genre-tag { padding: 4px 8px; font-size: 9px; }
+    .stats-row { gap: 12px; margin-bottom: 16px; }
+    .stat-value { font-size: 16px; }
+    .stat-label { font-size: 8px; letter-spacing: 0.5px; }
+    .detail-sections { padding: 16px 10px; }
+    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .cast-card img { margin-bottom: 4px; border-width: 1px; }
+    .cast-card h4 { font-size: 9px; }
+    .cast-card p { font-size: 8px; }
+    .seasons-section { margin-top: 16px; padding-top: 12px; }
+    .seasons-section h3 { font-size: 13px; margin-bottom: 10px; }
+    .season-btn { padding: 5px 10px; font-size: 10px; }
+
+    .section { margin-bottom: 24px; }
+    .section-header { margin-bottom: 10px; }
+    .section-title { font-size: 16px; }
+    .section-subtitle { font-size: 11px; }
+    .see-all { padding: 4px 8px; font-size: 10px; gap: 3px; }
+    .see-all i { font-size: 10px; }
+
+    .page-header { padding: 14px 10px 10px; }
+    .page-header h1 { font-size: 18px; margin-bottom: 3px; }
+    .page-header p { font-size: 11px; margin-bottom: 10px; }
+
+    .content-tabs { gap: 5px; margin-bottom: 14px; }
+    .content-tab { padding: 5px 12px; font-size: 11px; }
+
+    .filter-chips { gap: 5px; margin-bottom: 14px; }
+    .filter-chip { padding: 4px 8px; font-size: 10px; }
+
+    .carousel { gap: 8px; }
+    .movie-card { width: 120px; }
+
+    .modal { padding: 20px 14px; margin: 0 6px; border-radius: var(--radius-sm); }
+    .modal-wide { max-width: calc(100vw - 24px); }
+    .modal-header { margin-bottom: 20px; }
+    .modal-logo { font-size: 20px; margin-bottom: 8px; }
+    .modal-header h2 { font-size: 18px; }
+    .modal-header p { font-size: 12px; }
+    .modal-close { top: 10px; right: 10px; width: 32px; height: 32px; font-size: 13px; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { font-size: 11px; margin-bottom: 5px; }
+    .form-group input { padding: 10px 12px; font-size: 12px; }
+    .modal .btn { padding: 10px; font-size: 12px; }
+    .modal-footer { font-size: 12px; margin-top: 14px; }
+    .divider-text { margin: 14px 0; font-size: 11px; gap: 10px; }
+    .social-login { gap: 6px; }
+    .social-btn { padding: 8px; font-size: 12px; gap: 6px; }
+    .social-btn i { font-size: 14px; }
+
+    .player-container { border-radius: 6px; }
+    .player-close { top: -40px; width: 32px; height: 32px; font-size: 14px; }
+    .player-title { font-size: 12px; bottom: -24px; }
+    .player-controls-bar { margin-top: 10px; font-size: 11px; }
+
+    .toast-container { left: 10px; right: 10px; bottom: 72px; gap: 6px; }
+    .toast { padding: 10px 12px; }
+    .toast::before { width: 3px; }
+    .toast i { font-size: 16px; }
+    .toast-title { font-size: 12px; }
+    .toast-message { font-size: 11px; }
+    .toast-close { font-size: 12px; }
+
+    .bottom-nav { height: 52px; padding: 3px 0 6px; }
+    .bottom-nav-item { padding: 3px 6px; gap: 1px; }
+    .bottom-nav-item i { font-size: 16px; }
+    .bottom-nav-item span { font-size: 8px; }
+    .bottom-nav-item.active::after { width: 14px; height: 2px; bottom: -3px; }
+
+    .search-box { padding: 0 10px; margin-bottom: 10px; }
+    .search-box input { padding: 8px 12px 8px 36px; font-size: 12px; }
+    .search-box i { left: 12px; font-size: 13px; }
+
+    .library-empty { padding: 40px 10px; }
+    .library-empty i { font-size: 40px; margin-bottom: 12px; }
+    .library-empty h3 { font-size: 14px; }
+    .library-empty p { font-size: 12px; margin-bottom: 16px; }
+
+    .no-results { padding: 40px 10px; }
+    .no-results i { font-size: 36px; margin-bottom: 12px; }
+    .no-results h3 { font-size: 14px; }
+    .no-results p { font-size: 12px; }
+
+    .pagination { gap: 3px; margin-top: 24px; }
+    .page-btn { min-width: 32px; height: 32px; font-size: 11px; padding: 0 6px; }
+
+    .loading-center { min-height: 200px; gap: 12px; }
+    .spinner { width: 32px; height: 32px; border-width: 3px; }
+    .loading-center p { font-size: 12px; }
+
+    .episode-item { padding: 8px 10px; gap: 10px; }
+    .episode-item .episode-number { width: 26px; height: 26px; font-size: 10px; }
+    .episode-item .episode-info h4 { font-size: 11px; }
+    .episode-item .episode-info p { font-size: 10px; }
+    .episode-item .episode-play { width: 30px; height: 30px; font-size: 11px; }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .mobile-header { height: calc(48px + env(safe-area-inset-top)); }
+        .bottom-nav { height: calc(52px + env(safe-area-inset-bottom)); padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+        .main-content { margin-top: calc(48px + env(safe-area-inset-top)); }
+    }
+}
+
+/* 320px - Ultra small phones */
+@media (max-width: 320px) {
+    .mobile-header { height: 44px; padding: 0 8px; }
+    .mobile-logo { font-size: 14px; }
+    .mobile-logo .logo-icon { font-size: 16px; }
+    .mobile-icon-btn { width: 30px; height: 30px; font-size: 11px; }
+    .mobile-user-avatar { width: 28px; height: 28px; font-size: 9px; }
+    .main-content { margin-top: 44px; }
+
+    .hero { height: 240px; margin: 0 -8px 16px; }
+    .hero-content { padding: 16px 10px; }
+    .hero-title { font-size: 15px; }
+    .hero-meta { gap: 5px; margin-bottom: 10px; }
+    .hero-meta .rating { font-size: 11px; }
+    .hero-meta .year { font-size: 11px; }
+    .hero-meta .genre { padding: 2px 6px; font-size: 8px; }
+    .hero-actions .btn { padding: 6px 10px; font-size: 10px; }
+    .hero-badge { padding: 3px 8px; font-size: 8px; }
+
+    .content { padding: 6px 8px 12px; }
+
+    .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .movie-poster { margin-bottom: 5px; border-radius: 5px; }
+    .movie-info h3 { font-size: 9px; }
+    .movie-info .movie-meta { font-size: 8px; }
+    .movie-rating { padding: 2px 4px; font-size: 8px; }
+
+    .detail-poster { width: 90px; }
+    .detail-title { font-size: 14px; }
+    .detail-meta .badge { padding: 2px 6px; font-size: 9px; }
+    .detail-actions .btn { padding: 6px 10px; font-size: 10px; }
+    .detail-overview { font-size: 10px; }
+    .genre-tag { padding: 3px 6px; font-size: 8px; }
+    .stat-value { font-size: 14px; }
+    .stat-label { font-size: 7px; }
+    .cast-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .cast-card h4 { font-size: 8px; }
+    .cast-card p { font-size: 7px; }
+
+    .section-title { font-size: 14px; }
+    .section-subtitle { font-size: 10px; }
+
+    .page-header h1 { font-size: 16px; }
+    .page-header p { font-size: 10px; }
+
+    .content-tab { padding: 4px 10px; font-size: 10px; }
+    .filter-chip { padding: 3px 6px; font-size: 9px; }
+
+    .movie-card { width: 110px; }
+
+    .modal { padding: 16px 12px; }
+    .modal-header h2 { font-size: 16px; }
+    .form-group input { padding: 8px 10px; font-size: 11px; }
+    .modal .btn { padding: 8px; font-size: 11px; }
+
+    .bottom-nav { height: 48px; padding: 2px 0 4px; }
+    .bottom-nav-item i { font-size: 14px; }
+    .bottom-nav-item span { font-size: 7px; }
+
+    .page-btn { min-width: 28px; height: 28px; font-size: 10px; }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .mobile-header { height: calc(44px + env(safe-area-inset-top)); }
+        .bottom-nav { height: calc(48px + env(safe-area-inset-bottom)); padding-bottom: calc(4px + env(safe-area-inset-bottom)); }
+        .main-content { margin-top: calc(44px + env(safe-area-inset-top)); }
+    }
 }
