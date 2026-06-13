@@ -569,7 +569,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .top-navbar { display: none; }
 
     /* === HERO - COMPACT === */
-    .hero { height: 380px; width: 130px; margin-bottom: 28px; border-radius: 0; margin: 0 -16px 28px; }
+    .hero { height: 380px; width: 100%; margin-bottom: 28px; border-radius: 0; margin: 0 -16px 28px; }
     .hero-content { padding: 28px 20px; }
     .hero-title { font-size: 28px; max-width: 100%; letter-spacing: -0.5px; }
     .hero-meta { gap: 12px; margin-bottom: 16px; }
@@ -637,7 +637,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     }
 
     /* === DETAIL PAGE - FIXED LAYOUT === */
-    .detail-hero { height: 40vh; min-height: 300px; }
+    .detail-hero { height: 40vh; width: 100%; min-height: 300px; }
     .detail-content { 
         padding: 0 12px; 
         margin-top: -80px; 
@@ -806,7 +806,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 32px; height: 32px; font-size: 11px; }
     .main-content { margin-top: 52px; }
 
-    .hero { height: 320px; width: 100px; margin: 0 -12px 24px; }
+    .hero { height: 320px; width: 100%; margin: 0 -12px 24px; }
     .hero-content { padding: 24px 16px; }
     .hero-title { font-size: 22px; letter-spacing: -0.3px; }
     .hero-meta { gap: 8px; margin-bottom: 14px; }
@@ -835,7 +835,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .play-btn { width: 40px; height: 40px; font-size: 14px; }
 
     /* === DETAIL PAGE - SIDE BY SIDE LAYOUT === */
-    .detail-hero { height: 35vh; min-height: 260px; }
+    .detail-hero { height: 35vh; width: 100%; min-height: 260px; }
     .detail-content { 
         padding: 0 12px; 
         margin-top: -60px; 
@@ -977,7 +977,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 30px; height: 30px; font-size: 10px; }
     .main-content { margin-top: 48px; }
 
-    .hero { height: 280px; width: 85px; margin: 0 -10px 20px; }
+    .hero { height: 280px; width: 100%; margin: 0 -10px 20px; }
     .hero-content { padding: 20px 12px; }
     .hero-title { font-size: 18px; letter-spacing: -0.2px; line-height: 1.1; }
     .hero-meta { gap: 6px; margin-bottom: 12px; }
@@ -1008,7 +1008,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .play-btn { width: 36px; height: 36px; font-size: 12px; border-width: 2px; }
 
     /* === DETAIL PAGE === */
-    .detail-hero { height: 30vh; min-height: 220px; }
+    .detail-hero { height: 30vh; width: 100%; min-height: 220px; }
     .detail-content { 
         padding: 0 10px; 
         margin-top: -50px; 
@@ -1152,7 +1152,7 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .mobile-user-avatar { width: 28px; height: 28px; font-size: 9px; }
     .main-content { margin-top: 44px; }
 
-    .hero { height: 240px; width: 75px; margin: 0 -8px 16px; }
+    .hero { height: 240px; width: 100%; margin: 0 -8px 16px; }
     .hero-content { padding: 16px 10px; }
     .hero-title { font-size: 15px; }
     .hero-meta { gap: 5px; margin-bottom: 10px; }
@@ -1171,6 +1171,14 @@ body { font-family: var(--font-body); background: var(--bg-primary); color: var(
     .movie-info .movie-meta { font-size: 8px; }
     .movie-rating { padding: 2px 4px; font-size: 8px; }
 
+    .detail-hero { height: 30vh; width: 100%; min-height: 220px; }
+    .detail-content { 
+        padding: 0 10px; 
+        margin-top: -40px; 
+        gap: 10px; 
+        flex-direction: row; 
+        align-items: flex-start; 
+    }
     .detail-poster { width: 75px; }
     .detail-title { font-size: 10px; }
     .detail-meta .badge { padding: 2px 6px; font-size: 7px; }
